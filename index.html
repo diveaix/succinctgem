@@ -1,0 +1,43 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+  <head> 
+    <meta charset="UTF-8" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+    <title>Image Randomizer</title> 
+    <link rel="stylesheet" href="style.css" /> 
+  </head> 
+  <body> 
+    <!-- Background gradient overlay -->
+    <div class="gradient-overlay"></div>
+
+    <!-- Floating translucent shapes -->
+    <div id="background-shapes">
+      <div class="shape large"></div>
+      <div class="shape medium"></div>
+      <div class="shape small"></div>
+    </div>
+
+    <div class="container"> 
+      <img src="assets/suc-logo.webp" alt="Succinct Logo" class="logo" />
+      <h1>SUCCINCT RANDOMIZER</h1>
+      <div class="slider-window">
+        <div class="image-strip" id="imageStrip">
+          <img src="assets/suc-blue.webp" alt="Blue Option" />
+          <img src="assets/suc-green.webp" alt="Green Option" />
+          <img src="assets/suc-orange.webp" alt="Orange Option" />
+          <img src="assets/suc-pink.webp" alt="Pink Option" />
+          <img src="assets/suc-purple.webp" alt="Purple Option" />
+        </div>
+      </div>
+
+      <button id="startBtn">Start</button>
+      <div id="result"></div>
+
+      <!-- Share button container -->
+      <div id="shareContainer" style="margin-top: 20px; display: none;">
+        <button id="shareBtn">Share to X</button>
+      </div>
+    </div> 
+    <script src="script.js"></script> 
+  </body> 
+</html>
