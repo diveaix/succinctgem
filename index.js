@@ -64,7 +64,7 @@ shareBtn.addEventListener('click', () => {
   // Compose tweet text with color and mention
   const text = encodeURIComponent(`I pledge to be loyal to the team ${color}! @SuccinctLabs #ProveWithUs 
 
-Pledge Yourself: https://succinctroulette.tiiny.site/`);
+Pledge Yourself: https://succinctgem.vercel.app`);
 
   // Twitter share URL
   const tweetUrl = `https://twitter.com/intent/tweet?text=${text}`;
