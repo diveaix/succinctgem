@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
+
+body {
+  font-family: 'Rubik Glitch', sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  background: none; /* remove direct background */
+  overflow-x: hidden;
+  z-index: 0;
+}
+
+/* Background image with blur and dark overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('assets/background.png') no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(8px);
+  opacity: 0.5; /* semi-transparent */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Dark overlay on top of the blurred background */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Animated gradient overlay */
+body > .gradient-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(270deg, #ff69b4, #9c27b0, #2196f3, #4caf50);
+  background-size: 800% 800%;
+  opacity: 0.25;
+  animation: gradientShift 30s ease infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Floating translucent shapes container */
+#background-shapes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Floating shapes styling */
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 105, 180, 0.15);
+  animation: floatUpDown 6s ease-in-out infinite;
+}
+
+.shape.large {
+  width: 200px;
+  height: 200px;
+  bottom: 10%;
+  left: 15%;
+}
+
+.shape.medium {
+  width: 120px;
+  height: 120px;
+  bottom: 40%;
+  right: 20%;
+  animation-delay: 2s;
+}
+
+.shape.small {
+  width: 80px;
+  height: 80px;
+  top: 30%;
+  left: 60%;
+  animation-delay: 4s;
+}
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translateY(-20px);
+    opacity: 0.3;
+  }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Make sure container is above overlays */
+.container {
+  position: relative;
+  z-index: 2;
+
+  margin-top: 60px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 16px;
+  display: inline-block;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+h1 {
+  font-size: 32px;
+  color: #ff1493;
+  text-shadow: 2px 2px 4px #00000066;
+}
+
+.slider-window {
+  width: 400px;
+  height: 250px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 6px solid #ff69b4;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background: white;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.image-strip {
+  display: flex;
+  transition: transform 0.3s ease-out;
+}
+
+.image-strip img {
+  width: 400px;
+  height: 250px;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+
+.image-strip img:hover {
+  transform: scale(1.03);
+}
+
+button {
+  margin-top: 20px;
+  padding: 14px 50px;
+  font-size: 22px;
+  font-weight: bold;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff69b4aa;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff1493;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ff1493aa;
+}
+
+#result {
+  margin-top: 25px;
+  font-size: 26px;
+  font-weight: bold;
+  transition: opacity 0.4s ease-in-out;
+  /* dynamic glow controlled by JS */
+}
+
+/* Glow colors for each selection */
+
+.glow-blue {
+  color: #2196f3;
+  text-shadow: 0 0 5px #2196f3, 0 0 10px #64b5f6;
+  animation: glow-blue 1.5s infinite alternate;
+}
+
+.glow-green {
+  color: #4caf50;
+  text-shadow: 0 0 5px #4caf50, 0 0 10px #81c784;
+  animation: glow-green 1.5s infinite alternate;
+}
+
+.glow-orange {
+  color: #ff9800;
+  text-shadow: 0 0 5px #ff9800, 0 0 10px #ffb74d;
+  animation: glow-orange 1.5s infinite alternate;
+}
+
+.glow-pink {
+  color: #e91e63;
+  text-shadow: 0 0 5px #e91e63, 0 0 10px #f48fb1;
+  animation: glow-pink 1.5s infinite alternate;
+}
+
+.glow-purple {
+  color: #9c27b0;
+  text-shadow: 0 0 5px #9c27b0, 0 0 10px #ba68c8;
+  animation: glow-purple 1.5s infinite alternate;
+}
+
+/* Animations for each glow color */
+
+@keyframes glow-blue {
+  0% { text-shadow: 0 0 5px #2196f3, 0 0 10px #64b5f6; }
+  100% { text-shadow: 0 0 15px #2196f3, 0 0 25px #64b5f6; }
+}
+
+@keyframes glow-green {
+  0% { text-shadow: 0 0 5px #4caf50, 0 0 10px #81c784; }
+  100% { text-shadow: 0 0 15px #4caf50, 0 0 25px #81c784; }
+}
+
+@keyframes glow-orange {
+  0% { text-shadow: 0 0 5px #ff9800, 0 0 10px #ffb74d; }
+  100% { text-shadow: 0 0 15px #ff9800, 0 0 25px #ffb74d; }
+}
+
+@keyframes glow-pink {
+  0% { text-shadow: 0 0 5px #e91e63, 0 0 10px #f48fb1; }
+  100% { text-shadow: 0 0 15px #e91e63, 0 0 25px #f48fb1; }
+}
+
+@keyframes glow-purple {
+  0% { text-shadow: 0 0 5px #9c27b0, 0 0 10px #ba68c8; }
+  100% { text-shadow: 0 0 15px #9c27b0, 0 0 25px #ba68c8; }
+}
+
+/* Logo styling */
+.logo {
+  width: 150px;        /* Adjust size as needed */
+  margin-bottom: 20px; /* Space below logo */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
